@@ -77,7 +77,7 @@ Wykonane zadania:
 ## lab 07
 
 Wykonane zadania:
-* Zadanie 01 - nie ❌
+* Zadanie 01 - tak ✅
 * Zadanie 02 - nie ❌
 * Zadanie 03 - nie ❌
 * Zadanie 04 - nie ❌
