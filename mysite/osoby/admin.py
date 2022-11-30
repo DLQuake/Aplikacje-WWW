@@ -3,7 +3,7 @@ from .models import Druzyna, Osoba
 
 # Register your models here.
 class Admin(admin.ModelAdmin):
-    list_display = ['id','wlasciciel','imie', 'nazwisko', 'miesiac_urodzenia', 'miesiac_dodania', 'data_dodania', 'kraj']
+    list_display = ['id','wlasciciel','imie', 'nazwisko', 'miesiac_urodzenia', 'miesiac_dodania', 'data_dodania', 'can_view_other_persons', 'kraj']
     list_filter = ['kraj', 'data_dodania']
 class DruzynaAdmin(admin.ModelAdmin):
     list_display = ['id','nazwa', 'kraj']

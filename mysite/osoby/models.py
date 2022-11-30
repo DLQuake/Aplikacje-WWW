@@ -28,6 +28,7 @@ class Osoba(models.Model):
     miesiac_urodzenia = models.CharField(max_length=255, choices=MIESIACE, default=date.today().month)
     miesiac_dodania = models.CharField(max_length=255, choices=MIESIACE, default=date.today().month)
     data_dodania = models.DateField(default = datetime.now)
+    can_view_other_persons = models.BooleanField(default=False)
     kraj = models.ForeignKey('Druzyna', on_delete=models.CASCADE, null=True)
 
     class Meta:

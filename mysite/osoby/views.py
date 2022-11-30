@@ -6,6 +6,24 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .models import Osoba, Druzyna
 from .serializers import OsobaSerializer, DruzynaSerializer
+from django.contrib.auth.decorators import permission_required
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
+
+@api_view(['GET'])
+@permission_required('ankiety.view_person')
+def osoba_view(request, pk):
+    if not request.user.has_perm('osoby.view_osoba'):
+        raise PermissionDenied()
+    try:
+        osoba = Osoba.objects.get(pk=pk)
+        if not osoba.can_view_other_persons and osoba.owner != request.user:
+            return HttpResponse(f"Ten użytkownik ma nazwę {osoba.imie}")
+        else:
+            serializer = OsobaSerializer(osoba)
+            return Response(serializer.data)
+    except Osoba.DoesNotExist:
+        return HttpResponse(f"Baza danych nie zawiera użytkownika o ID {pk}.")
 
 
 @api_view(['GET', 'POST'])
